@@ -127,12 +127,12 @@ public class OrderController {
 //		System.out.println("Service os if == null u wrong______"+ os);
 
 		if (os.insertOrder2(order)) {
-			SimpleMailMessage message = new SimpleMailMessage();
-
-			message.setTo(FRIEND_EMAIL);
-			message.setSubject("Test Simple Email");
-			message.setText("Hello, Im testing Simple Email");
-			this.emailSender.send(message);
+//			SimpleMailMessage message = new SimpleMailMessage();
+//
+//			message.setTo(FRIEND_EMAIL);
+//			message.setSubject("Test Simple Email");
+//			message.setText("Hello, Im testing Simple Email");
+//			this.emailSender.send(message);
 			return "checkout_done";
 		}
 		return "redirect:/shop";
