@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<!-- Basic -->
+
+<head th:replace="header :: header1" />
+<body>
+	<div th:replace="header :: header2" />
+	<!-- Start Cart  -->
+	<div class="cart-box-main">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-lg-12 mb-6">
+					<form th:action="@{/approved_order}" th:object="${order}"
+						method="post">
+						<div class="row">
+							<div class="col-md-12 col-lg-12">
+								<div class="shipping-method-box">
+									<div class="title-left">
+										<h3>Shipping Method</h3>
+									</div>
+									<script>
+										radiobtn = document
+												.getElementById("Choice1");
+										radiobtn.checked = true;
+									</script>
+									<div class="mb-4">
+										<div>
+											<input type="radio" id="Choice1" name="shipping_method"
+												value="Standard Delivery" th:field="*{ship_method}" checked> <label for="Choice1">Standard Delivery (7-10 business days) </label>
+											<span class="ml-auto font-weight-bold" style="padding-left:800px;">Free</span>
+											</br>
+											<input type="radio" id="Choice2" name="shipping_method"
+												value="Express Delivery" th:field="*{ship_method}"> <label for="Choice2">Express Delivery (3-5 business days)</label>
+											<span class="ml-auto font-weight-bold" style="padding-left:800px;">10.00$</span>
+											</br>
+											<input type="radio" id="Choice3" name="shipping_method"
+												value="Next Business Day" th:field="*{ship_method}"> <label for="Choice3">Next Business Day (1-2 business days)</label>
+											<span class="ml-auto font-weight-bold" style="padding-left:790px;">20.00$</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 col-lg-12">
+								<div class="odr-box">
+									<div class="title-left">
+										<h3>Shopping cart</h3>
+									</div>
+									<div class="rounded p-2 bg-light">
+										<th:block th:each="i : ${session.listCart}">
+											<div class="media mb-2 border-bottom">
+												<div class="media-body">
+													<p th:text="${i.value.product.name}+'___'">t</p>
+													<div class="small text-muted"
+														th:text="'Price:' + ${i.value.product.price} + '$' + '  Count:' + ${i.value.count}">
+
+													</div>
+
+												</div>
+											</div>
+										</th:block>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 col-lg-12">
+								<div class="order-box">
+									<div class="d-flex">
+										<div class="ml-auto font-weight-bold">Total</div>
+									</div>
+									<hr>
+									<div class="d-flex gr-total">
+										<h5>Grand Total Product without feeship</h5>
+										<div class="ml-auto h5" th:text="${session.totalPrice} + '$'">
+										</div>
+									</div>
+									<hr>
+								</div>
+							</div>
+							<div style="padding-left: 1000px;">
+								<div class="update-box">
+									<input value="Place Order" type="submit" />
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- End Cart -->
+	<div th:replace="footer :: footer" />
+</body>
+
+</html>
