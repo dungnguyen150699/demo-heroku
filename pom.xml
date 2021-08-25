@@ -94,8 +94,8 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.6.0</version>
 			</plugin>
 		</plugins>
 	</build>
