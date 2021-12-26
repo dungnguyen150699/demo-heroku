@@ -1,5 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.controller.Shop;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,15 +23,16 @@ import com.example.demo.entity.OrderDetail;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import com.example.demo.service.ProductService;
-import com.example.demo.service.UserService1;
+
 
 @Controller
+@RequestMapping(value="shop")
 public class ProductController {
 
 	@Autowired
 	private ProductService ps;
 
-	@RequestMapping(value = { "/shop"})
+	@RequestMapping(value = {""})
 	public String shop(Model model, HttpSession session) {
 		return showPage(model, session, 1, "asc");
 	}
@@ -54,14 +56,14 @@ public class ProductController {
 		model.addAttribute("totalItems", pageProducts.getTotalElements());
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("listProduct", listProducts);
-		return "shop";
+		return "SHOP/shop";
 	}
 
 	@RequestMapping("/search")
 	public String search(Model model, @RequestParam(name = "search") String search) {
 		List<Product> listProduct = ps.findByNameLike(search);
 		model.addAttribute("listProduct", listProduct);
-		return "shop";
+		return "SHOP/shop";
 	}
 
 	@RequestMapping("/addcart/{id}")

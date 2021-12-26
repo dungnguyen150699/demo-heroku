@@ -27,7 +27,7 @@ public class ProductService extends DAO{
 	private ProductRepository productRepo;
 	
 	public Page<Product> listAll(int pageNum, String sortField, String sortDir){
-		int pageSize = 4;
+		int pageSize = 8;
 		
 		Pageable pageable = PageRequest.of(pageNum-1, pageSize,
 				sortDir.equals("asc") ? Sort.by(sortField).ascending():
@@ -49,5 +49,9 @@ public class ProductService extends DAO{
 	public Product findbyID(int id) {
 		Product pd = productRepo.findByID(id);
 		return pd;
+	}
+	
+	public void saveProduct(Product p) {
+		productRepo.save(p);
 	}
 }

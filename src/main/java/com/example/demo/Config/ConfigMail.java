@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-@Configuration
+//@Configuration
 public class ConfigMail {
 	 // Replace with your email here:  
     private static final String MY_EMAIL = "dungnguyen150699@gmail.com";

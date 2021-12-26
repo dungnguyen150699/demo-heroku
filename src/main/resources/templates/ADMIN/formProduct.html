@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="ADMIN/header :: header" />
+<body>
+	<div th:replace="ADMIN/header :: navbar" />
+	<br />
+	<div class="container">
+	<th:block th:if="${mes == 'insert'}">
+		<h2>Thêm Product</h2>
+		<form th:action="@{/admin/product/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
+	</th:block>
+	<th:block th:if="${mes == 'update'}">
+		<h2>Sửa Product</h2>
+		<form th:action="@{/admin/product/update}" th:object="${product}" enctype="multipart/form-data" method="post">
+	</th:block>
+			<div class="form-group">
+				<label for="usr1">Name:</label> 
+				<input type="text" name="name" th:value="${product.getName()}" class="form-control" id="usr1" required="required"/>
+			</div>
+			<div class="form-group">
+				<label for="usr2">Image:</label> 
+				<input type="file" id="usr2" name="img" accept="image/*" required="required"/>
+			</div>
+			<div class="form-group">
+				<label for="usr3">Price:</label> 
+				<input type="text" name="price" th:value="${product.getPrice()}" class="form-control" id="usr3" required="required" />
+			</div>
+			<div class="form-group">
+				<label for="usr4">Count:</label> 
+				<input type="text" name="count" th:value="${product.getCount()}" class="form-control" id="usr4" required="required" />
+			</div>
+			<input type="submit" value="Submit" class="btn" />
+		</form>
+	</div>
+</body>
+</html>

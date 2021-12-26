@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.Shop;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,19 +24,15 @@ import com.example.demo.service.OrderService;
 import com.example.demo.service.ProductService;
 
 @Controller
+@RequestMapping(value="cart")
 public class OrderController {
 
 	@Autowired
 	private OrderService os;
 
-	@Autowired
-	public JavaMailSender emailSender;
-
 	private Order order;
 
-	private static final String FRIEND_EMAIL = "tiendungac99@gmail.com";
-
-	@RequestMapping("/cart")
+	@RequestMapping("")
 	public String order(Model model, HttpSession session) throws SQLException {
 		HashMap<Integer, OrderDetail> orderDetail = (HashMap<Integer, OrderDetail>) session.getAttribute("listCart");
 		if (orderDetail == null) {
@@ -55,7 +51,7 @@ public class OrderController {
 			price += priceitem;
 		}
 		model.addAttribute("totalPrice", price);
-		return "cart";
+		return "SHOP/cart";
 	}
 
 	@RequestMapping("/updatecart")
@@ -78,7 +74,7 @@ public class OrderController {
 		session.setAttribute("totalPrice", price);
 		model.addAttribute("order", this.order);
 		model.addAttribute("totalPrice", price);
-		return "cart";
+		return "SHOP/cart";
 	}
 
 	@RequestMapping("/delete_item/{id}")
@@ -104,7 +100,7 @@ public class OrderController {
 			} else {
 				Order order = new Order();
 				model.addAttribute("order", order);
-				return "checkout";
+				return "SHOP/checkout";
 			}
 		} else
 			return "redirect:/cart";
@@ -133,7 +129,7 @@ public class OrderController {
 //			message.setSubject("Test Simple Email");
 //			message.setText("Hello, Im testing Simple Email");
 //			this.emailSender.send(message);
-			return "checkout_done";
+			return "SHOP/checkout_done";
 		}
 		return "redirect:/shop";
 	}

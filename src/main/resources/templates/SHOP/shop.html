@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <!-- Basic -->
-<head th:replace="header :: header1" ></head>
+<head th:replace="SHOP/header :: header1" ></head>
 <body>
-	<div th:replace="header :: header2" />
+	<div th:replace="SHOP/header :: header2" />
 	<!-- Start Side Menu -->
 	<div class="side">
 		<a href="#" class="close-side"><i class="fa fa-times"></i></a>
@@ -99,7 +99,7 @@
 													<div class="type-lb">
 														<p class="sale">Sale</p>
 													</div>
-													<img th:src="${product.img}" class="img-fluid" alt="Image">
+													<img th:src="${product.img}" style="width:100px;height:100px;" class="img-fluid" alt="Image">
 													<div class="mask-icon">
 														<ul>
 															<li><a href="#" data-toggle="tooltip"
@@ -108,13 +108,13 @@
 															<li><a href="#" data-toggle="tooltip"
 																data-placement="right" title="Compare"><i
 																	class="fas fa-sync-alt"></i></a></li>
-															<li><a th:href="@{'/addcart/'+${product.id}}"
+															<li><a th:href="@{'/shop/addcart/'+${product.id}}"
 																data-toggle="tooltip" data-placement="right"
 																title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
 														</ul>
-														<a class="cart" th:href="@{'/addcart/'+${product.id}}">Add
+														<a class="cart" th:href="@{'/shop/addcart/'+${product.id}}">Add
 															to Cart</a> <a class="cart"
-															th:href="@{'/addcart/'+${product.id}}">Add to Cart</a>
+															th:href="@{'/shop/addcart/'+${product.id}}">Add to Cart</a>
 													</div>
 												</div>
 												<div class="why-text">
@@ -137,27 +137,26 @@
 
 					<div style="text-align: center" class="m-4">
 						<a class="paging2" style="font-size: 25px;"
-							th:href="@{'/page/1'+ '?sortDir=asc' }"> &laquo; </a> <a
+							th:href="@{'/shop/page/1'+ '?sortDir=asc' }"> &laquo; </a> <a
 							class="paging2" style="font-size: 25px;" th:if="${currentPage}>1"
-							th:href="@{'/page/' + ${currentPage - 1}+'?sortDir=asc'}">&lsaquo;</a>
+							th:href="@{'/shop/page/' + ${currentPage - 1}+'?sortDir=asc'}">&lsaquo;</a>
 
 						<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
 							class="paging1" th:if="${currentPage}!=${i}"
-							th:href="@{'/page/' + ${i} + '?sortDir=asc'}">[[${i}]]</a> <span
+							th:href="@{'/shop/page/' + ${i} + '?sortDir=asc'}">[[${i}]]</a> <span
 							class="paging1" th:if="${currentPage}==${i}">[[${i}]]</span>
 							&nbsp;
 						</span> <a class="paging2" style="font-size: 25px;"
 							th:if="${currentPage}<${totalPages}" )
-							th:href="@{'/page/' + ${currentPage + 1} + '?sortDir=asc'}">&rsaquo;</a>
+							th:href="@{'/shop/page/' + ${currentPage + 1} + '?sortDir=asc'}">&rsaquo;</a>
 						<a class="paging2" style="font-size: 25px;"
-							th:href="@{'/page/' + ${totalPages} + '?sortDir=asc'}"></a>
+							th:href="@{'/shop/page/' + ${totalPages} + '?sortDir=asc'}"></a>
             </div>     
                 </div>
             </div>
         </div>
     </div>
     <!-- End Shop Page -->
- <div th:replace="
-							footer :: footer" />
+ <div th:replace="SHOP/footer :: footer" />
 </body>
 </html>

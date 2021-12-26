@@ -18,10 +18,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "orders")
+@NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class Order implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -37,88 +43,8 @@ public class Order implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
-	public Order() {}
-	
-	public Order(Integer id, Date dateOrder, String ship_method, int approved, User user,
-			List<OrderDetail> orderDetails) {
-//		super();
-		this.id = id;
-		this.dateOrder = dateOrder;
-		this.ship_method = ship_method;
-		this.approved = approved;
-		this.user = user;
-		this.orderDetails = orderDetails;
-	}
-
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-	public Date getDateOrder() {
-		return dateOrder;
-	}
-
-
-	public void setDateOrder(Date dateOrder) {
-		this.dateOrder = dateOrder;
-	}
-
-
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User object) {
-		this.user = object;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-	public List<OrderDetail> getOrderDetails() {
-		return orderDetails;
-	}
-
-
-	public void setOrderDetails(List<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
-
-
-	public String getShip_method() {
-		return ship_method;
-	}
-
-
-	public void setShip_method(String ship_method) {
-		this.ship_method = ship_method;
-	}
-
-
-	public int getApproved() {
-		return approved;
-	}
-
-
-	public void setApproved(int approved) {
-		this.approved = approved;
-	}
-	
-	
 }

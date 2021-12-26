@@ -43,9 +43,9 @@ public class ConfigSercurity extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
 		http.authorizeRequests()
-			.antMatchers("/register","/login","/doRegister","/css/**","**/js/**","**/images/**","/resources/**", "/static/**").permitAll()
+			.antMatchers("/admin/createAdmin","/register","/login","/doRegister","/css/**","**/js/**","**/images/**","/resources/**", "/static/**").permitAll()
 	        .antMatchers("/admin","/delete/**").hasAuthority("ADMIN")
-	        .antMatchers("/","/shop","/home","/cart","/delete_item/**","/page/**","/checkout","/approved_order","/search").hasAnyAuthority("ADMIN","USER") // admin mới xóa được sản phẩm
+	        .antMatchers("/","/shop/**","/cart/**").hasAnyAuthority("ADMIN","USER") // admin mới xóa được sản phẩm
 	        .anyRequest().authenticated()
 	        .and()
 	        .formLogin()

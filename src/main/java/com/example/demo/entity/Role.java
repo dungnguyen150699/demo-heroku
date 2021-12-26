@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +16,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "role")
+@NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,37 +36,7 @@ public class Role implements Serializable {
 	@Column(name = "name", columnDefinition = "varchar(255)")
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER) // have mapby
 	private Set<User> users;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNameRole() {
-		return name;
-	}
-
-	public void setNameRole(String nameRole) {
-		this.name = nameRole;
-	}
-
-
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 }

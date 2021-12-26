@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="ADMIN/header :: header" />
+<body>
+	<div th:replace="ADMIN/header :: navbar" />
+	<br/>
+
+	<div class="container">
+		<a th:href="@{/register}"><button type="button" class="btn btn-info">Thêm</button></a>
+		<br/>
+		<table class="table table-border" th>
+			<thead>
+				<tr>
+					<th>Tên Account </th>
+					<th>Mật khẩu Account</th>
+					<th>Các chức vụ</th>
+					<th>Địa chỉ</th>
+					<th>Điện thoại</th>
+					<th>Hành động</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${listUser}">
+					<td th:text="${user.getUsername()}">UserName</td>
+					<td th:text="${user.getPassword()}">Password</td>
+					<td>
+						<th:block th:each="role,i : ${user.getRoles()}">
+							<th:block th:if="${i.index}==${user.roles.size()}-1">
+								<span th:text="|${role.getName()}|">Role</span>
+							</th:block>
+							<th:block th:if="${i.index}<${user.roles.size()}-1">
+								<span th:text="|${role.getName()},|">Role</span>
+							</th:block>
+						</th:block>
+					</td>
+					<td th:text="${user.getAddress()}">Address</td>
+					<td th:text="${user.getPhone()}">Phone</td>
+					<td >
+						<a th:href="@{|/admin/users/delete/${user.getId()}|}"><button type="button" class="btn btn-info">Xóa</button></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

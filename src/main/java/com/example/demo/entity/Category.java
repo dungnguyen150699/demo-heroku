@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,8 +16,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "category")
+@NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -28,33 +36,5 @@ public class Category implements Serializable{
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<Product> listProduct = new ArrayList<Product>();
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNameCategory() {
-		return nameCategory;
-	}
-
-	public void setNameCategory(String nameCategory) {
-		this.nameCategory = nameCategory;
-	}
-
-	public List<Product> getListProduct() {
-		return listProduct;
-	}
-
-	public void setListProduct(List<Product> listProduct) {
-		this.listProduct = listProduct;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
 }

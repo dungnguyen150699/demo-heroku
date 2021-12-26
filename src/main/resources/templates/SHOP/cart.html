@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <!-- Basic -->
-<head th:replace="header :: header1" />
+<head th:replace="SHOP/header :: header1" />
 <body>
-	<div th:replace="header :: header2" />
+	<div th:replace="SHOP/header :: header2" />
     <!-- Start Cart  -->
     <title>Cart</title>
     <div class="cart-box-main">
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-main table-responsive">
-						<form th:action="@{/updatecart}" th:object="${order}" method="post">
+						<form th:action="@{/cart/updatecart}" th:object="${order}" method="post">
 	                        <table class="table">
 	                            <thead>
 	                                <tr>
@@ -27,7 +27,7 @@
 	                            <tbody>
 	                                <tr th:each="i,j : *{orderDetails}">
 	                                    <td class="thumbnail-img">
-	                                        <a href="#"><img th:src="${i.product.img}" class="cart-thumb" alt="" /></a>
+	                                        <a href="#"><img th:src="${i.product.img}" style="width:100px;height:100px;" class="cart-thumb" alt="" /></a>
 	                                    </td>
 	                                    <td class="name-pr">
 	                                        <a href="#" th:text="${i.product.name}" ></a>
@@ -42,7 +42,7 @@
 	                                    <input type="number" size="4" th:value="${i.count}" th:field="*{orderDetails[__${j.index}__].count}" min="0" step="1" class="c-input-text qty text">
 	                                    </td>
 	                                    <td class="price-pr" th:with="var=${i.product.price*i.count}"><span th:text="${var+' $'}"></span></td>
-	                                    <td><a th:href="@{'/delete_item/'+${i.product.id}}"><i class="fas fa-trash"></i></a></td>
+	                                    <td><a th:href="@{'/cart/delete_item/'+${i.product.id}}"><i class="fas fa-trash"></i></a></td>
 	                                </tr>
 	                            </tbody>
 	                        </table>
@@ -80,13 +80,13 @@
                         </div>
                         <hr> </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a th:href="@{/checkout}" class="ml-auto btn hvr-hover">Checkout</a> </div>
+                <div class="col-12 d-flex shopping-box"><a th:href="@{/cart/checkout}" class="ml-auto btn hvr-hover">Checkout</a> </div>
             </div>
 
         </div>
     </div>
     <!-- End Cart -->
- <div th:replace="footer :: footer" />
+ <div th:replace="SHOP/footer :: footer" />
  </body>
  </html>
   

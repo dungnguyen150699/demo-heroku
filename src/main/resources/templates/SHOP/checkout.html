@@ -2,15 +2,15 @@
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <!-- Basic -->
 
-<head th:replace="header :: header1" />
+<head th:replace="SHOP/header :: header1" />
 <body>
-	<div th:replace="header :: header2" />
+	<div th:replace="SHOP/header :: header2" />
 	<!-- Start Cart  -->
 	<div class="cart-box-main">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 col-lg-12 mb-6">
-					<form th:action="@{/approved_order}" th:object="${order}"
+					<form th:action="@{/cart/approved_order}" th:object="${order}"
 						method="post">
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
@@ -88,7 +88,7 @@
 		</div>
 	</div>
 	<!-- End Cart -->
-	<div th:replace="footer :: footer" />
+	<div th:replace="SHOP/footer :: footer" />
 </body>
 
 </html>
