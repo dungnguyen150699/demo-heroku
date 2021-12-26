@@ -16,15 +16,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "role")
-@NoArgsConstructor
-@Data
-@AllArgsConstructor
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -33,10 +32,39 @@ public class Role implements Serializable {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "name", columnDefinition = "varchar(255)")
+	@Column(name = "name")
 	private String name;
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER) // have mapby
 	private Set<User> users;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Role() {};
 }
