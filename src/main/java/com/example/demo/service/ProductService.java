@@ -16,11 +16,9 @@ import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.UserRepository;
 
 @Service
-public class ProductService extends DAO{
+public class ProductService {
 
-	public ProductService() throws SQLException {
-		super();
-		// TODO Auto-generated constructor stub
+	public ProductService(){
 	}
 
 	@Autowired
