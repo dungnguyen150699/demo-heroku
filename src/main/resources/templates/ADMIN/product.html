@@ -21,7 +21,7 @@
 			<tbody>
 				<tr th:each="product : ${listProduct}">
 					<td th:text="${product.getName()}">Name Product</td>
-					<td ><img th:src="${product.getImg()}" style="width:100px;height:100px; border:black solid 1px;" alt=""/></td>
+					<td ><img th:src="@{'data:image/jpeg;base64,'+${product.getImgBase64()}}" style="width:100px;height:100px; border:black solid 1px;" alt=""/></td>
 					<td th:text="${product.getPrice()}">Price</td>
 					<td th:text="${product.getCount()}">Count</td>
 					<td >

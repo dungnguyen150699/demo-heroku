@@ -19,7 +19,7 @@ import com.example.demo.entity.Product;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer>{
 	
-	@Query(value = "select max(id) from order", nativeQuery=true)
+	@Query(value = "select max(id) from orders", nativeQuery=true)
 	int LatstID_OrderDetail();
 	
 }

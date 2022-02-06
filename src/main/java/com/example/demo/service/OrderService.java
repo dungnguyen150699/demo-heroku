@@ -53,7 +53,14 @@ public class OrderService {
 //	}
 	
 	public int LatstID_OrderDetail() {
-		return or.LatstID_OrderDetail();
+		int result;
+		try{
+			result = or.LatstID_OrderDetail();
+		}
+		catch(Exception e) {
+			result = 0;
+		}
+		return result;
 	}
 
 	@Transactional

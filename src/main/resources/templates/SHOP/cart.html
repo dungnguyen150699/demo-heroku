@@ -27,7 +27,7 @@
 	                            <tbody>
 	                                <tr th:each="i,j : *{orderDetails}">
 	                                    <td class="thumbnail-img">
-	                                        <a href="#"><img th:src="${i.product.img}" style="width:100px;height:100px;" class="cart-thumb" alt="" /></a>
+	                                        <a href="#"><img th:src="@{'data:image/jpeg;base64,'+${i.product.getImgBase64()}}"  style="width:100px;height:100px;" class="cart-thumb" alt="" /></a>
 	                                    </td>
 	                                    <td class="name-pr">
 	                                        <a href="#" th:text="${i.product.name}" ></a>

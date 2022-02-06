@@ -14,10 +14,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -41,7 +43,8 @@ public class Product implements Serializable {
 	private String name;
 	
 	@Column(name = "img")
-	private String img;
+	@Lob
+	private byte[] img;
 	
 	@Column(name = "price")
 	private double price;
@@ -77,15 +80,13 @@ public class Product implements Serializable {
 	}
 
 
-	public String getImg() {
+	public byte[] getImg() {
 		return img;
 	}
 
-
-	public void setImg(String img) {
+	public void setImg(byte[] img) {
 		this.img = img;
 	}
-
 
 	public double getPrice() {
 		return price;
@@ -131,6 +132,9 @@ public class Product implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getImgBase64() {
+		return Base64.encodeBase64String(this.getImg());
+	}
 
 	public Product() {};
 }

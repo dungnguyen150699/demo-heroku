@@ -115,17 +115,20 @@ public class UserController {
 	}
 	@RequestMapping(value = "/admin/createAdmin")
 	public ResponseEntity<String> createAdmin(Model model) {
-		Role r = new Role();
-		r.setName("ADMIN");
-		Set <Role> listr = new HashSet<Role>();
-		listr.add(r);
-		
-		User u = new User();
-		u.setUsername("admin");
-		u.setPassword(encode.encode("1"));
-		u.setRoles(listr);
-		us.save(u);
-		return new ResponseEntity<String>("Success",HttpStatus.OK);
+		if(us.findUserByUsername("admin")==null) {
+			Role r = new Role();
+			r.setName("ADMIN");
+			Set <Role> listr = new HashSet<Role>();
+			listr.add(r);
+			User u = new User();
+			u.setUsername("admin");
+			u.setPassword(encode.encode("1"));
+			u.setRoles(listr);
+			
+			us.save(u);
+			return new ResponseEntity<String>("Success admin 1",HttpStatus.OK);
+		}
+		else return new ResponseEntity<String>("Success admin 1",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/users/delete/{id}")

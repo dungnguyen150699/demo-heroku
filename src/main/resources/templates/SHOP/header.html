@@ -41,7 +41,7 @@
 							<div id="offer-box" class="carouselTicker">
 								<ul class="offer-box">
 									<li><i class="fab fa-opencart"><span
-											th:text="'wellcom___  ' + ${session.user.username}"></span></i></li>
+											th:text="'wellcom   ' + ${session.user.username}"></span></i></li>
 								</ul>
 							</div>
 						</div>
@@ -123,7 +123,7 @@
 						<ul class="cart-list">
 							<th:block th:each="cartItem:${session.listCart}">
 								<li><a href="#" class="photo"><img
-										th:src="${cartItem.value.product.img}" class="cart-thumb"
+										th:src="@{'data:image/jpeg;base64,'+${cartItem.value.product.getImgBase64()}}" class="cart-thumb"
 										alt="" /></a>
 									<h6>
 										<a href="#" th:text="${cartItem.value.product.name}"> </a>

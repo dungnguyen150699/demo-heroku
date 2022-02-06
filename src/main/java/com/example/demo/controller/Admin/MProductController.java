@@ -46,20 +46,20 @@ public class MProductController {
 	}
 	
 	@RequestMapping(value = "/addProduct")
-	public String addProduct(Model model,@ModelAttribute("product") Productdto product) {
+	public String addProduct(Model model,
+			@RequestParam(name="name") String name,
+			@RequestParam(name="img") MultipartFile img,
+			@RequestParam(name="price") double price,
+			@RequestParam(name="count") int count
+			) {
 		model.addAttribute("message", "Upload success");
 		System.out.println("----------");
 		try {
-			MultipartFile myFile = product.getImg();
-			String fileName = myFile.getOriginalFilename();
-			String typeFile = myFile.getContentType();
-			File file = new File(this.getFolderUpload(), fileName);
-			myFile.transferTo(file);
 			Product product_entity = new Product();
-			product_entity.setCount(product.getCount());
-			product_entity.setName(product.getName());
-			product_entity.setPrice(product.getPrice());
-			product_entity.setImg("/images/"+fileName);
+			product_entity.setCount(count);
+			product_entity.setName(name);
+			product_entity.setPrice(price);
+			product_entity.setImg(img.getBytes());
 			ps.saveProduct(product_entity);
 		} catch (Exception e) {
 			e.printStackTrace();
